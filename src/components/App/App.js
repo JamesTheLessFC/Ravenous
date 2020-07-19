@@ -2,8 +2,6 @@ import React from 'react';
 import './App.css';
 import BusinessList from '../BusinessList/BusinessList';
 import SearchBar from '../SearchBar/SearchBar';
-import '../BusinessList/BusinessList';
-import '../SearchBar/SearchBar';
 
 const business = {
   imageSrc: 'https://s3.amazonaws.com/codecademy-content/programs/react/ravenous/pizza.jpg',
@@ -27,11 +25,15 @@ const businesses = [
 ];
 
 class App extends React.Component {
+  searchYelp(term, location, sortBy) {
+    console.log(`Search Yelp with ${term}, ${location}, ${sortBy}`);
+  }
+
   render() {
     return (
       <div className="App">
         <h1>ravenous</h1>
-        <SearchBar />
+        <SearchBar searchYelp={this.searchYelp} />
         <BusinessList businesses={businesses} />
       </div>
     );
