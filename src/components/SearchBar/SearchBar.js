@@ -1,7 +1,5 @@
 import React from 'react';
 import './SearchBar.css';
-// <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
-// const apiKey = 'AIzaSyDfGpq7J2p5M4b-c2sA5FfdhDLkEvCH6V4';
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -38,12 +36,14 @@ class SearchBar extends React.Component {
     this.setState({ term: event.target.value });
   }
 
+
   handleLocationChange(event) {
     this.setState({ location: event.target.value });
   }
 
+//replaced "this.state.location" in searchYelp() argument with "document.getElementById('txtPlaces').value" so that Google Places Autocomplete selection is used as location.
   handleSearch(event) {
-    this.props.searchYelp(this.state.term, this.state.location, this.state.sortBy);
+    this.props.searchYelp(this.state.term, document.getElementById('txtPlaces').value, this.state.sortBy);
     event.preventDefault();
   }
 
@@ -54,12 +54,14 @@ class SearchBar extends React.Component {
     });
   }
 
+//Method to allow 'press enter to search' functionality. Replaced "this.state.location" in searchYelp() argument with "document.getElementById('txtPlaces').value" so that Google Places Autocomplete selection is used as location.
   handleKeyPress(e) {
     if (e.key === 'Enter' && this.state.term && this.state.location) {
-      this.props.searchYelp(this.state.term, this.state.location, this.state.sortBy);
+      this.props.searchYelp(this.state.term, document.getElementById('txtPlaces').value, this.state.sortBy);
     }
   }
 
+//removed "onChange={this.handleLocationChange}" from properties of second <input> as it is no longer being used.
   render() {
     return (
       <div className="SearchBar">
@@ -70,7 +72,7 @@ class SearchBar extends React.Component {
         </div>
         <div className="SearchBar-fields">
           <input placeholder="Search Businesses" onChange={this.handleTermChange} onKeyUp={this.handleKeyPress.bind(this)} />
-          <input placeholder="Where?" onChange={this.handleLocationChange} onKeyUp={this.handleKeyPress.bind(this)} />
+          <input id="txtPlaces" placeholder="Where?"  onKeyUp={this.handleKeyPress.bind(this)} />
         </div>
         <div className="SearchBar-submit">
           <a onClick={this.handleSearch}>Let's Go</a>

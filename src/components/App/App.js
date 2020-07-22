@@ -4,27 +4,6 @@ import BusinessList from '../BusinessList/BusinessList';
 import SearchBar from '../SearchBar/SearchBar';
 import Yelp from '../../util/Yelp';
 
-// const business = {
-//   imageSrc: '',
-//   name: '',
-//   address: '',
-//   city: '',
-//   state: '',
-//   zipCode: '',
-//   category: '',
-//   rating: '',
-//   reviewCount: ''
-// };
-//
-// const businesses = [
-//   business,
-//   business,
-//   business,
-//   business,
-//   business,
-//   business
-// ];
-
 class App extends React.Component {
   constructor(props) {
     super(props);
